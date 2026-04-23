@@ -75,6 +75,7 @@ export default function TwoFactorChallenge() {
                     >
                       <InputOTPGroup>
                         {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <safe>
                           <InputOTPSlot key={index} index={index} />
                         ))}
                       </InputOTPGroup>
