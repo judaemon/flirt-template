@@ -10,7 +10,9 @@
 		"format:check": "prettier --check resources/",
 		"lint": "eslint . --fix",
 		"lint:check": "eslint .",
-		"types:check": "tsc --noEmit"
+		"types:check": "tsc --noEmit",
+		"pint": "./vendor/bin/pint",
+		"pint:check": "./vendor/bin/pint --test"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
