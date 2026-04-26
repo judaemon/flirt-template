@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61adcf1fac7aecd223d9d8dc733a6396",
+    "content-hash": "867004a0e841fd9b228f705833a9687d",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4042,6 +4042,47 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.7.0"
             },
             "time": "2025-12-06T11:56:16+00:00"
+        },
+        {
+            "name": "nms/oauth",
+            "version": "dev-dev-boilerplate",
+            "source": {
+                "type": "git",
+                "url": "git@nexus.nmscreative.com:creative-projects/nms-oauth-package.git",
+                "reference": "b15d74d107671083800a49d7533cfa545679fd4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://nexus.nmscreative.com/api/v4/projects/creative-projects%2Fnms-oauth-package/repository/archive.zip?sha=b15d74d107671083800a49d7533cfa545679fd4a",
+                "reference": "b15d74d107671083800a49d7533cfa545679fd4a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.2",
+                "laravel/framework": "^11.0 || ^12.0 || ^13.0",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nms\\Oauth\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Genes Fidel Tamondong",
+                    "email": "gfat@newmediastaff.com"
+                },
+                {
+                    "name": "Jon Rey Galera",
+                    "email": "jrg@newmediastaff.com"
+                }
+            ],
+            "support": {
+                "source": "https://nexus.nmscreative.com/creative-projects/nms-oauth-package/-/tree/dev-boilerplate",
+                "issues": "https://nexus.nmscreative.com/creative-projects/nms-oauth-package/-/issues"
+            },
+            "time": "2026-04-25T07:02:19+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -12032,7 +12073,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "nms/oauth": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
