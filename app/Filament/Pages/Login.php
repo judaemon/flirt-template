@@ -24,15 +24,15 @@ class Login extends BaseLogin
     {
         return $schema
             ->components([
-                $this->getEmailFormComponent(),
+                $this->getCompanyEmailFormComponent(),
                 $this->getPasswordFormComponent(),
             ])
             ->statePath('data');
     }
 
-    protected function getEmailFormComponent(): Component
+    protected function getCompanyEmailFormComponent(): Component
     {
-        return TextInput::make('email')
+        return TextInput::make('company_email')
             ->label(__('Email'))
             ->email()
             ->required()
@@ -44,7 +44,7 @@ class Login extends BaseLogin
     protected function throwFailureValidationException(): never
     {
         throw ValidationException::withMessages([
-            'data.email' => __('filament-panels::auth/pages/login.messages.failed'),
+            'data.company_email' => __('filament-panels::auth/pages/login.messages.failed'),
         ]);
     }
 

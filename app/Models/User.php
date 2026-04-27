@@ -13,8 +13,6 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
 #[Fillable([
-    'name',
-    'email',
     'password',
     'hash',
     'user_account_id',
@@ -33,6 +31,28 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasRoles, Notifiable, TwoFactorAuthenticatable;
+
+    protected $appends = ['name'];
+
+    /**
+     * Get the user's full name.
+     */
+    protected function name(): \Illuminate\Database\Eloquent\Casts\Attribute
+    {
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: fn () => trim("{$this->first_name} {$this->last_name}"),
+        );
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @return string|array
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->company_email ?? $this->personal_email;
+    }
 
     /**
      * Get the attributes that should be cast.

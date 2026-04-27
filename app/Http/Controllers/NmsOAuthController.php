@@ -65,13 +65,11 @@ class NmsOAuthController extends BaseOauthController
             $newUser = User::updateOrCreate(
                 ['user_account_id' => $callbackResult['userId']],
                 [
-                    'name' => ($userData->first_name ?? '').' '.($userData->last_name ?? ''),
                     'hash' => $userData->hash ?? Str::uuid(),
                     'last_name' => $userData->last_name ?? null,
                     'first_name' => $userData->first_name ?? null,
                     'middle_name' => $userData->middle_name ?? null,
                     'suffix' => $userData->suffix ?? null,
-                    'email' => $userData->company_email ?? $userData->personal_email ?? null,
                     'personal_email' => $userData->personal_email ?? null,
                     'company_email' => $userData->company_email ?? null,
                     'status' => 'active',
