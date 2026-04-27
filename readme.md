@@ -29,7 +29,7 @@ composer run dev
 
 create new user
 ```bash
-php artisan make:filament-user
+php artisan migrate:fresh --seed
 ```
 
 typescript formatter

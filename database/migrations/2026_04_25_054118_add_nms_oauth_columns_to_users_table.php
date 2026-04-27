@@ -33,6 +33,19 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            // Drop indexes first for SQLite compatibility
+            $table->dropIndex(['hash']);
+            $table->dropUnique(['user_account_id']);
+            $table->dropIndex(['last_name']);
+            $table->dropIndex(['first_name']);
+            $table->dropIndex(['middle_name']);
+            $table->dropIndex(['suffix']);
+            $table->dropUnique(['personal_email']);
+            $table->dropIndex(['company_email']);
+            $table->dropIndex(['status']);
+            $table->dropUnique(['md5_personal_email']);
+            $table->dropIndex(['md5_company_email']);
+
             $table->dropColumn([
                 'hash',
                 'user_account_id',
