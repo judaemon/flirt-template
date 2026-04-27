@@ -18,19 +18,20 @@ Route::middleware('oauth')->group(function () {
         if (auth()->check()) {
             return redirect('/admin');
         }
+
         return redirect('login');
     })->name('nms');
 
     Route::post('auth/logout', function () {
-        \Auth::logout();
-        \Session::flush();
-        \Cache::flush();
+        Auth::logout();
+        Session::flush();
+        Cache::flush();
         NmsOauth::logout();
 
         return redirect('/');
     })->name('auth.logout');
-    })->where('path', '^(?!oauth\/).*');
+})->where('path', '^(?!oauth\/).*');
 
-    Route::get('/oauth/callback', [NmsOAuthController::class, 'callback'])->name('oauth.callback');
+Route::get('/oauth/callback', [NmsOAuthController::class, 'callback'])->name('oauth.callback');
 
 require __DIR__.'/settings.php';
