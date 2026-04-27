@@ -6,9 +6,20 @@ Inertia
 Laravel
 Tailwind CSS
 
-create new user
+setup your nginx (needed for nms auth package)
+you can change the port to 80 to be compatible with nginx
+you can also modify vite if your running in  CORS policy issue
+env
 ```bash
-php artisan make:filament-user
+cp .env.example .env
+```
+
+install nms package and dependencies 
+```bash
+composer config --global gitlab-token.nexus.nmscreative.com glpat-sampletoken
+composer i
+npm i
+php artisan migrate
 ```
 
 run dev server
@@ -16,6 +27,12 @@ run dev server
 composer run dev
 ```
 
+create new user
+```bash
+php artisan make:filament-user
+```
+
+typescript formatter
 ```bash
 # Format all files
 npx @biomejs/biome format --write
@@ -34,4 +51,9 @@ npx @biomejs/biome check --write
 
 # Format, lint, and organize imports of specific files
 npx @biomejs/biome check --write <files>
+```
+
+PHP formatter
+```bash
+./vendor/bin/pint
 ```

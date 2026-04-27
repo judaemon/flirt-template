@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Nms\Oauth\Controllers\OauthController as BaseOauthController;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Nms\Oauth\Controllers\LoggerController;
+use Nms\Oauth\Controllers\OauthController as BaseOauthController;
 use Nms\Oauth\Helpers\OauthHelper;
 use Nms\Oauth\Helpers\RequestHelper;
 use Nms\Oauth\Models\NmsOauthUsersModel;
@@ -19,7 +19,7 @@ class NmsOAuthController extends BaseOauthController
         // replicate the parent callback logic but add user creation
         $redirect = \Session::pull('original_url');
         try {
-            $oauthHelper = new OauthHelper(new NmsOauthUsersModel());
+            $oauthHelper = new OauthHelper(new NmsOauthUsersModel);
             $callbackResult = $oauthHelper->callback($request);
 
             // login update data
@@ -31,7 +31,8 @@ class NmsOAuthController extends BaseOauthController
 
             return ($redirect) ? redirect($redirect) : redirect('/admin');
         } catch (\Throwable $throwable) {
-            LoggerController::log('OAuth login failed: ' . $throwable->getMessage(), 'error');
+            LoggerController::log('OAuth login failed: '.$throwable->getMessage(), 'error');
+
             return redirect(app(OauthService::class)->getUrlOauthAccess());
         }
     }
@@ -43,7 +44,7 @@ class NmsOAuthController extends BaseOauthController
             $userTokenStatusResult = RequestHelper::makeRequestWithAccessToken([
                 'token' => $callbackResult['accessToken'],
                 'api' => '/api/v1/user/check-user-token-status',
-                'type' => 'GET'
+                'type' => 'GET',
             ]);
 
             $userTokenStatusContent = json_decode($userTokenStatusResult->getContent());
@@ -54,7 +55,7 @@ class NmsOAuthController extends BaseOauthController
             } elseif (isset($userTokenStatusContent->data->user)) {
                 $userData = $userTokenStatusContent->data->user;
             } else {
-                throw new \Exception('User data not found in token status response: ' . json_encode($userTokenStatusContent));
+                throw new \Exception('User data not found in token status response: '.json_encode($userTokenStatusContent));
             }
 
             // Check if user exists by user_account_id
@@ -64,7 +65,7 @@ class NmsOAuthController extends BaseOauthController
             $newUser = User::updateOrCreate(
                 ['user_account_id' => $callbackResult['userId']],
                 [
-                    'name' => ($userData->first_name ?? '') . ' ' . ($userData->last_name ?? ''),
+                    'name' => ($userData->first_name ?? '').' '.($userData->last_name ?? ''),
                     'hash' => $userData->hash ?? Str::uuid(),
                     'last_name' => $userData->last_name ?? null,
                     'first_name' => $userData->first_name ?? null,
@@ -79,10 +80,10 @@ class NmsOAuthController extends BaseOauthController
                 ]
             );
 
-            if (!$localUser) {
-                LoggerController::log('First-time user created: ' . $newUser->id, 'info');
+            if (! $localUser) {
+                LoggerController::log('First-time user created: '.$newUser->id, 'info');
             } else {
-                LoggerController::log('User data updated: ' . $newUser->id, 'info');
+                LoggerController::log('User data updated: '.$newUser->id, 'info');
             }
 
             // If the userData contains a 'role', sync the role
@@ -90,7 +91,7 @@ class NmsOAuthController extends BaseOauthController
             //     $this->syncUserRole($newUser, $userData->role);
             // }
         } catch (\Exception $e) {
-            LoggerController::log('Error creating user: ' . $e->getMessage(), 'error');
+            LoggerController::log('Error creating user: '.$e->getMessage(), 'error');
         }
     }
 
