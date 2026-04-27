@@ -22,4 +22,16 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
+    server: {
+        // host: "0.0.0.0",
+        // port: 5173,
+        // strictPort: true,
+        // Allow CORS from specific dev origins.
+        // Add your own local domain (or port) here if you're using a different setup.
+        // Useful when running Vite behind a reverse proxy or using custom local domains.
+        cors: {
+            origin: ["http://stats-flow.local", "http://localhost:8000"],
+            credentials: true,
+        },
+    },
 });

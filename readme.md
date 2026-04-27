@@ -8,7 +8,7 @@ Tailwind CSS
 
 setup your nginx (needed for nms auth package)
 you can change the port to 80 to be compatible with nginx
-
+you can also modify vite if your running in  CORS policy issue
 env
 ```bash
 cp .env.example .env
