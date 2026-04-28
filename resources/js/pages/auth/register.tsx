@@ -23,30 +23,43 @@ export default function Register() {
           <>
             <div className="grid gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="first_name">First Name</Label>
                 <Input
-                  id="name"
+                  id="first_name"
                   type="text"
                   required
                   autoFocus
-                  autoComplete="name"
-                  name="name"
-                  placeholder="Full name"
+                  autoComplete="given-name"
+                  name="first_name"
+                  placeholder="First name"
                 />
-                <InputError message={errors.name} className="mt-2" />
+                <InputError message={errors.first_name} className="mt-2" />
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="email">Email address</Label>
+                <Label htmlFor="last_name">Last Name</Label>
                 <Input
-                  id="email"
+                  id="last_name"
+                  type="text"
+                  required
+                  autoComplete="family-name"
+                  name="last_name"
+                  placeholder="Last name"
+                />
+                <InputError message={errors.last_name} className="mt-2" />
+              </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="company_email">Email address</Label>
+                <Input
+                  id="company_email"
                   type="email"
                   required
                   autoComplete="email"
-                  name="email"
+                  name="company_email"
                   placeholder="email@example.com"
                 />
-                <InputError message={errors.email} />
+                <InputError message={errors.company_email} />
               </div>
 
               <div className="grid gap-2">

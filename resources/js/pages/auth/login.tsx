@@ -27,17 +27,17 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
           <>
             <div className="grid gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email address</Label>
+                <Label htmlFor="company_email">Email address</Label>
                 <Input
-                  id="email"
+                  id="company_email"
                   type="email"
-                  name="email"
+                  name="company_email"
                   required
                   autoFocus
                   autoComplete="email"
                   placeholder="email@example.com"
                 />
-                <InputError message={errors.email} />
+                <InputError message={errors.company_email} />
               </div>
 
               <div className="grid gap-2">

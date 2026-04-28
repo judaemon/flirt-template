@@ -9,33 +9,33 @@ import { update } from "@/routes/password";
 
 type Props = {
   token: string;
-  email: string;
+  company_email: string;
 };
 
-export default function ResetPassword({ token, email }: Props) {
+export default function ResetPassword({ token, company_email }: Props) {
   return (
     <>
       <Head title="Reset password" />
 
       <Form
         {...update.form()}
-        transform={(data) => ({ ...data, token, email })}
+        transform={(data) => ({ ...data, token, company_email })}
         resetOnSuccess={["password", "password_confirmation"]}
       >
         {({ processing, errors }) => (
           <div className="grid gap-6">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="company_email">Email</Label>
               <Input
-                id="email"
+                id="company_email"
                 type="email"
-                name="email"
+                name="company_email"
                 autoComplete="email"
-                value={email}
+                value={company_email}
                 className="mt-1 block w-full"
                 readOnly
               />
-              <InputError message={errors.email} className="mt-2" />
+              <InputError message={errors.company_email} className="mt-2" />
             </div>
 
             <div className="grid gap-2">

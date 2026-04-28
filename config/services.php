@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
+    'nmsoauth' => [
+        'auth_url' => env('NMS_AUTH_URL', 'http://127.0.0.1'),
+        'client_id' => env('NMS_CLIENT_ID', null),
+        'client_secret' => env('NMS_CLIENT_SECRET', null),
+        'redirect_url_to' => env('NMS_REDIRECT_URL_TO', env('APP_URL', 'http://127.0.0.1')),
+    ],
 ];
