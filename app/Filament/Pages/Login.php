@@ -48,6 +48,14 @@ class Login extends BaseLogin
         ]);
     }
 
+    protected function getCredentialsFromFormData(array $data): array
+    {
+        return [
+            'company_email' => $data['company_email'],
+            'password' => $data['password'],
+        ];
+    }
+
     public function getHeading(): string|Htmlable
     {
         return __('Log In');

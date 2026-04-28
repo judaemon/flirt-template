@@ -25,12 +25,12 @@
             <form wire:submit.prevent="authenticate" class="w-full flex flex-col gap-5">
                 <!-- Email Field -->
                 <div class="w-full">
-                    <label for="email" class="block text-sm font-semibold text-white mb-1.5">
+                    <label for="company_email" class="block text-sm font-semibold text-white mb-1.5">
                         Email<span class="text-[#e11d48] ml-0.5">*</span>
                     </label>
-                    <input type="email" id="email" wire:model="data.email" required autofocus tabindex="1"
+                    <input type="email" id="company_email" wire:model="data.company_email" required autofocus tabindex="1"
                         class="w-full px-4 py-2.5 bg-[#1a2026] border border-gray-700 rounded shadow-sm text-white focus:outline-none focus:border-[#e11d48] focus:ring-1 focus:ring-[#e11d48] transition-colors" />
-                    @error('data.email')
+                    @error('data.company_email')
                         <p class="text-[#e11d48] text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
